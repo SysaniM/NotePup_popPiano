@@ -1,0 +1,297 @@
+[gd_scene load_steps=26 format=3 uid="uid://50uso6epeexe"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ig8mh"]
+[ext_resource type="PackedScene" uid="uid://c15ss1w0wdgf8" path="res://new_note.tscn" id="2_efx0x"]
+[ext_resource type="PackedScene" uid="uid://bublapboufye7" path="res://shadow.tscn" id="2_v0c5e"]
+[ext_resource type="Texture2D" uid="uid://dinsth1ygg7q0" path="res://SliderTexture/Controls.png" id="4_3c6pg"]
+[ext_resource type="Texture2D" uid="uid://ddehqiwpo0cc7" path="res://SliderTexture/ControlsMenu.png" id="4_7a5pu"]
+[ext_resource type="Texture2D" uid="uid://c3xc8sxb7gnde" path="res://SliderTexture/Bg.png" id="4_g2sh2"]
+[ext_resource type="Texture2D" uid="uid://bmlya02b0e4po" path="res://Pup/NotePup_Pop.png" id="4_jt508"]
+[ext_resource type="Texture2D" uid="uid://y6hlc26ilk76" path="res://SliderTexture/ControlsShd.png" id="5_3w5b6"]
+[ext_resource type="Texture2D" uid="uid://jpc37xtxgg0i" path="res://SliderTexture/SliderBg.png" id="5_n7jyq"]
+[ext_resource type="Texture2D" uid="uid://dme30r05vdsis" path="res://SliderTexture/SliderGraber.png" id="6_3dig7"]
+[ext_resource type="Texture2D" uid="uid://djnbt0fj0fncn" path="res://SliderTexture/SliderIn.png" id="7_v8txx"]
+[ext_resource type="Texture2D" uid="uid://wx81ww1wnii1" path="res://SliderTexture/Reset.png" id="9_lm724"]
+[ext_resource type="Texture2D" uid="uid://meqoanovo2r6" path="res://SliderTexture/SliderGraberV.png" id="9_pjfq8"]
+[ext_resource type="Texture2D" uid="uid://co56t7qaphmbk" path="res://SliderTexture/SliderInV.png" id="10_achxx"]
+[ext_resource type="PackedScene" uid="uid://bmo05j1p2nftd" path="res://staff.tscn" id="10_m7307"]
+[ext_resource type="Texture2D" uid="uid://b28gfedlypbok" path="res://SliderTexture/Border.png" id="10_s1sec"]
+[ext_resource type="Texture2D" uid="uid://dsuqf6uplchi3" path="res://SliderTexture/ResetPressed.png" id="12_o1upm"]
+[ext_resource type="Texture2D" uid="uid://ci1k7arcvme4h" path="res://Pup/NotePup_Pop_pop.png" id="16_l04ga"]
+
+[sub_resource type="Curve2D" id="Curve2D_q4fmx"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 429.9, 0, 0, 0, 0, 0, -0.66748)
+}
+point_count = 2
+
+[sub_resource type="SystemFont" id="SystemFont_g6l1b"]
+font_names = PackedStringArray("Pixel")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqwdw"]
+size = Vector2(624, 429.999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mla0"]
+size = Vector2(614, 61)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x1ym5"]
+texture = ExtResource("7_v8txx")
+expand_margin_top = 200.0
+expand_margin_bottom = 200.0
+
+[sub_resource type="SystemFont" id="SystemFont_ado7d"]
+font_names = PackedStringArray("Pixel")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4y715"]
+texture = ExtResource("10_achxx")
+expand_margin_left = 100.0
+expand_margin_right = 100.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig8mh")
+
+[node name="Shadow" parent="." instance=ExtResource("2_v0c5e")]
+
+[node name="NewNote" parent="." instance=ExtResource("2_efx0x")]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5760.0
+offset_bottom = 3240.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g2sh2")
+
+[node name="MenuSlide" type="Path2D" parent="CanvasLayer/UI"]
+position = Vector2(30, 620.1)
+curve = SubResource("Curve2D_q4fmx")
+
+[node name="SlideProgress" type="PathFollow2D" parent="CanvasLayer/UI/MenuSlide"]
+unique_name_in_owner = true
+position = Vector2(0, 429.9)
+rotation = -1.5708
+loop = false
+
+[node name="ControlsMenu" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 620.0
+offset_right = 2206.0
+offset_bottom = 2406.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_7a5pu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/UI/ControlsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_g6l1b")
+theme_override_font_sizes/normal_font_size = 200
+text = "Left click and drag Note pup icon to create new notes
+
+Right click on a note to delete it
+
+Reset button deletes all notes"
+
+[node name="MenuArea" type="Area2D" parent="CanvasLayer/UI"]
+position = Vector2(30, 620)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/UI/MenuArea"]
+position = Vector2(302, 215.001)
+shape = SubResource("RectangleShape2D_oqwdw")
+
+[node name="ControlsShd" type="TextureRect" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 960.0
+offset_right = 2206.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_3w5b6")
+
+[node name="ControlsLeft" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 640.0
+offset_right = 2206.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+pivot_offset = Vector2(0, 410)
+texture = ExtResource("4_3c6pg")
+
+[node name="ControlsArea" type="Area2D" parent="CanvasLayer/UI"]
+position = Vector2(30, 989)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/UI/ControlsArea"]
+position = Vector2(307, 30.5)
+shape = SubResource("RectangleShape2D_2mla0")
+debug_color = Color(0.424769, 0.602859, 7.70092e-07, 0.42)
+
+[node name="ControlsRight" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2228.0
+offset_top = -93.0
+offset_right = 97.0
+offset_bottom = 1815.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.15, 0.15)
+pivot_offset = Vector2(4096, 818)
+texture = ExtResource("5_n7jyq")
+
+[node name="PlayerSpeed" type="HSlider" parent="CanvasLayer/UI/ControlsRight"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.998587
+anchor_bottom = 0.996
+offset_left = 149.0
+offset_top = 2578.0
+offset_right = 460.0
+offset_bottom = 43.9519
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.9, 0.9)
+theme_override_icons/grabber = ExtResource("6_3dig7")
+theme_override_icons/grabber_highlight = ExtResource("6_3dig7")
+theme_override_icons/grabber_disabled = ExtResource("6_3dig7")
+theme_override_styles/slider = SubResource("StyleBoxTexture_x1ym5")
+max_value = 16.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/UI/ControlsRight"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2323.0
+offset_top = 2265.0
+offset_right = -178.0
+offset_bottom = -415.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_ado7d")
+theme_override_font_sizes/font_size = 200
+text = "Speed: x0"
+
+[node name="Volume" type="VSlider" parent="CanvasLayer/UI/ControlsRight"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3763.0
+offset_top = 271.0
+offset_right = -9.0
+offset_bottom = -943.0
+mouse_filter = 1
+theme_override_icons/grabber = ExtResource("9_pjfq8")
+theme_override_icons/grabber_highlight = ExtResource("9_pjfq8")
+theme_override_icons/grabber_disabled = ExtResource("9_pjfq8")
+theme_override_styles/slider = SubResource("StyleBoxTexture_4y715")
+max_value = 2.0
+step = 0.001
+value = 1.0
+
+[node name="ResetButton" type="TextureButton" parent="CanvasLayer/UI/ControlsRight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 2144.0
+offset_right = -1924.0
+offset_bottom = -406.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(1012, 205)
+texture_normal = ExtResource("9_lm724")
+texture_pressed = ExtResource("12_o1upm")
+
+[node name="Border" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+mouse_filter = 2
+texture = ExtResource("10_s1sec")
+metadata/_edit_use_anchors_ = true
+
+[node name="NoteCreator" type="TextureButton" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -1992.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.15, 0.15)
+pivot_offset = Vector2(1536, 3072)
+texture_normal = ExtResource("4_jt508")
+texture_hover = ExtResource("16_l04ga")
+stretch_mode = 4
+
+[node name="Staff" parent="CanvasLayer/UI" instance=ExtResource("10_m7307")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = 50.0
+offset_bottom = -490.0
+scale = Vector2(0.95, 0.95)
+
+[connection signal="reset" from="." to="CanvasLayer/UI/Staff" method="_on_main_reset"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/MenuArea" to="." method="_on_menu_area_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/ControlsArea" to="." method="_on_controls_area_mouse_entered"]
+[connection signal="value_changed" from="CanvasLayer/UI/ControlsRight/PlayerSpeed" to="." method="_on_player_speed_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/UI/ControlsRight/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="button_up" from="CanvasLayer/UI/ControlsRight/ResetButton" to="." method="_on_reset_button_button_up"]
+[connection signal="button_down" from="CanvasLayer/UI/NoteCreator" to="." method="_on_note_creator_button_down"]
+[connection signal="button_up" from="CanvasLayer/UI/NoteCreator" to="." method="_on_note_creator_button_up"]

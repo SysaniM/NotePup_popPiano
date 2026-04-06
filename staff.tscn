@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmo05j1p2nftd"]
+
+[ext_resource type="Texture2D" uid="uid://b68jqrbxohj2k" path="res://Staff.png" id="1_d8ntd"]
+[ext_resource type="Script" path="res://staff.gd" id="1_h1ogf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc20w"]
+size = Vector2(10, 510)
+
+[sub_resource type="Curve2D" id="Curve2D_tcv3p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -771, -184, 0, 0, 0, 0, 813, -184)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4727"]
+size = Vector2(1568, 520)
+
+[node name="Staff" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 270)
+mouse_filter = 2
+script = ExtResource("1_h1ogf")
+
+[node name="Screenshot4" type="Sprite2D" parent="."]
+position = Vector2(960, 270)
+texture = ExtResource("1_d8ntd")
+
+[node name="Player" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(262, 270)
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+z_index = 10
+offset_left = -5.0
+offset_top = -255.0
+offset_right = 5.0
+offset_bottom = 255.0
+pivot_offset = Vector2(5, 255)
+mouse_filter = 2
+color = Color(0.678431, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_bc20w")
+
+[node name="PlayerPath" type="Path2D" parent="."]
+position = Vector2(1033, 454)
+curve = SubResource("Curve2D_tcv3p")
+
+[node name="PlayerProgress" type="PathFollow2D" parent="PlayerPath"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-771, -184)
+
+[node name="staffArea" type="Area2D" parent="."]
+position = Vector2(960, 270)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="staffArea"]
+visible = false
+position = Vector2(89, 11)
+shape = SubResource("RectangleShape2D_b4727")
+
+[node name="G_12" type="Marker2D" parent="."]
+position = Vector2(82, 57)
+
+[node name="F_11" type="Marker2D" parent="."]
+position = Vector2(82, 100)
+
+[node name="E_10" type="Marker2D" parent="."]
+position = Vector2(82, 142)
+
+[node name="D_9" type="Marker2D" parent="."]
+position = Vector2(82, 185)
+
+[node name="C_8" type="Marker2D" parent="."]
+position = Vector2(82, 227)
+
+[node name="B_7" type="Marker2D" parent="."]
+position = Vector2(82, 270)
+
+[node name="A_6" type="Marker2D" parent="."]
+position = Vector2(82, 312)
+
+[node name="G_5" type="Marker2D" parent="."]
+position = Vector2(82, 355)
+
+[node name="F_4" type="Marker2D" parent="."]
+position = Vector2(82, 397)
+
+[node name="E_3" type="Marker2D" parent="."]
+position = Vector2(82, 440)
+
+[node name="D_2" type="Marker2D" parent="."]
+position = Vector2(82, 482)
+
+[node name="C_1" type="Marker2D" parent="."]
+position = Vector2(82, 525)

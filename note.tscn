@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvhjfa8iq8rrc"]
+
+[ext_resource type="Script" path="res://Note.gd" id="1_vhp2x"]
+[ext_resource type="Texture2D" uid="uid://byahil0jbe7aq" path="res://Pup/NotePup_Pop_Closed.png" id="2_agi37"]
+[ext_resource type="Texture2D" uid="uid://bdvux05si6jxn" path="res://Pup/NotePup_Pop_Open.png" id="3_bwf7e"]
+[ext_resource type="AudioStream" uid="uid://dyrfghko5q2g8" path="res://Sounds/meowG0.mp3" id="3_d8o8c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rthxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_agi37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwf7e")
+}],
+"loop": true,
+"name": &"Pop",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2rotg"]
+radius = 29.0
+height = 80.0
+
+[node name="Note" type="Area2D"]
+script = ExtResource("1_vhp2x")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+y_sort_enabled = true
+offset_left = -85.0
+offset_top = -5.0
+offset_right = 75.0
+offset_bottom = 5.0
+pivot_offset = Vector2(80, 5)
+mouse_filter = 2
+color = Color(0.0923971, 0.0923971, 0.0923971, 1)
+
+[node name="Pup" type="AnimatedSprite2D" parent="."]
+position = Vector2(-6, 0)
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_rthxl")
+animation = &"Pop"
+
+[node name="NotePlayTime" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2rotg")
+debug_color = Color(0.867317, 0.331154, 0.335484, 0.42)
+
+[node name="NoteSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_d8o8c")
+bus = &"Meow"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="finished" from="NoteSound" to="." method="_on_note_sound_finished"]
